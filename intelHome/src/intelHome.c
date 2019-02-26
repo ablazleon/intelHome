@@ -12,6 +12,8 @@
 #include <stdlib.h>
 
 int temp = 10;
+#define numSens 6
+int sens[numSens] = {0, 1, 0, 0, 0, 0};
 
 int subir(int nGrados){
 	temp++;
@@ -45,9 +47,26 @@ int tempControl(void){
 	return 0;
 }
 
+int activarAlarma(void){
+	printf("Alarm on \n");
+	fflush(stdout);
+	return 0;
+}
+
+int comprobarSensor(int sensor){
+	printf("Checking sensor %d \n", sensor);
+	fflush(stdout);
+	if(sens[sensor] == 1) activarAlarma();
+	return 0;
+}
+
 int presenceControl(void){
 	printf("Presence is controlled \n");
 	fflush(stdout);
+
+	int i;
+	for(i = 0; i < numSens; i++) comprobarSensor(i);
+
 	return 0;
 }
 
